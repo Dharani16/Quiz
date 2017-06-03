@@ -1,0 +1,58 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dharani.quiz.QuizFragment"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button_quiz"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Quiz 1"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:textSize="20sp"
+        android:theme="@style/PrimaryButton"/>
+
+    <Button
+        android:id="@+id/button_quiz2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Quiz 2"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:theme="@style/PrimaryButton"/>
+
+    <Button
+        android:id="@+id/button_quiz3"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Quiz 3"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:theme="@style/PrimaryButton"/>
+    <Button
+        android:id="@+id/button_quiz4"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Quiz 4"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:theme="@style/PrimaryButton"/>
+
+
+</LinearLayout>
