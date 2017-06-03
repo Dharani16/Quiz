@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -37,29 +38,35 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        question = (TextView)findViewById(R.id.textView_question);
-        answers = (RadioGroup)findViewById(R.id.radioGroup);
-        answer1 = (RadioButton)findViewById(R.id.optionOne);
-        answer2 = (RadioButton)findViewById(R.id.optionTwo);
-        answer3 = (RadioButton)findViewById(R.id.optionThree);
-        answer4 = (RadioButton)findViewById(R.id.optionFour);
+        question = (TextView) findViewById(R.id.textView_question);
+        answers = (RadioGroup) findViewById(R.id.radioGroup);
+        answer1 = (RadioButton) findViewById(R.id.optionOne);
+        answer2 = (RadioButton) findViewById(R.id.optionTwo);
+        answer3 = (RadioButton) findViewById(R.id.optionThree);
+        answer4 = (RadioButton) findViewById(R.id.optionFour);
+        btNext = (Button) findViewById(R.id.button_next);
 
-        btNext = (Button)findViewById(R.id.button_next);
         loadQuestion();
-        showQuestion(quesIndex);
+
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(QuizActivity.this, "Move to next question", Toast.LENGTH_SHORT).show();
                 setAnswer();
                 quesIndex++;
-                if (quesIndex >= getQuesList().length()){
-                    quesIndex = getQuesList().length()-1;
+                if (quesIndex >= getQuesList().length()) {
+                    quesIndex = getQuesList().length() - 1;
                 }
+                showQuestion(quesIndex);
 
-                
             }
         });
+        selected = new int[getQuesList().length()];
+        Arrays.fill(selected, -1);
+        correctAns = new int[getQuesList().length()];
+        Arrays.fill(correctAns, -1);
+        showQuestion(quesIndex);
+
     }
 
     private void loadQuestion() {
@@ -88,16 +95,16 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    public static JSONArray getQuesList(){
+    public static JSONArray getQuesList() {
         return quesList;
     }
 
 
     private void showQuestion(int qIndex) {
-        try{
+        try {
             JSONObject aQues = getQuesList().getJSONObject(qIndex);
             String quesValue = aQues.getString("Question");
-            if (correctAns[qIndex] == -1){
+            if (correctAns[qIndex] == -1) {
                 String correctAnsStr = aQues.getString("CorrectAnswer");
                 correctAns[qIndex] = Integer.parseInt(correctAnsStr);
             }
@@ -112,13 +119,10 @@ public class QuizActivity extends AppCompatActivity {
             answer3.setText(aAns.toCharArray(), 0, aAns.length());
             aAns = ansList.getJSONObject(3).getString("Answer");
             answer4.setText(aAns.toCharArray(), 0, aAns.length());
-            Log.d("",selected[qIndex]+"");
+            Log.d("", selected[qIndex] + "");
 
 
-
-
-
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
@@ -132,9 +136,10 @@ public class QuizActivity extends AppCompatActivity {
             selected[quesIndex] = 2;
         if (answer4.isChecked())
             selected[quesIndex] = 3;
-
-        Log.d("", Arrays.toString(selected));
-        Log.d("",Arrays.toString(correctAns));
+        Toast.makeText(getApplicationContext(),"selected value is"+Arrays.toString(selected),Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"array answer is"+Arrays.toString(correctAns),Toast.LENGTH_LONG).show();
+        Log.d("selected value is", Arrays.toString(selected));
+        Log.d("Correct answer is ", Arrays.toString(correctAns));
     }
 
 
